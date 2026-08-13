@@ -1,0 +1,9 @@
+{
+  "id": "MitosisJoker",
+  "name": "Mitosis",
+  "author": ["denneyl"],
+  "description": "TODO add the description :)",
+  "prefix": "mitosis",
+  "main_file": "main.lua",
+  "version": "0.0.1"
+}
