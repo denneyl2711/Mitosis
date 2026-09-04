@@ -25,8 +25,6 @@ SMODS.Joker {
             new_card:add_to_deck()
             G.jokers:emplace(new_card)
 
-            --todo would be nice to just insert into a particular position
-            --janky code to swap ideal location with actual location
             local ideal_index
             for i, the_card in ipairs(G.jokers.cards) do
                 if card == the_card then
@@ -34,9 +32,7 @@ SMODS.Joker {
                 end
             end
             if ideal_index ~= nil then
-                local temp = G.jokers.cards[ideal_index]
-                G.jokers.cards[ideal_index] = G.jokers.cards[#G.jokers.cards]
-                G.jokers.cards[#G.jokers.cards] = temp
+                shimmy_over(ideal_index)
             end
         elseif context.drawing_cards or context.end_of_round then
             --todo would be nice to have dissolve shader here
@@ -46,3 +42,14 @@ SMODS.Joker {
 
     end
 }
+
+-- reorder the cards such that the newly inserted card (N) gets moved next to the source card (S)
+-- XXXXXXSXXXXN
+-- XXXXXXSNXXXX
+function shimmy_over(ideal_index)
+    for i = #G.jokers.cards - 1, ideal_index, -1 do
+        local temp = G.jokers.cards[i]
+        G.jokers.cards[i] = G.jokers.cards[i + 1]
+        G.jokers.cards[i + 1] = temp
+    end
+end
