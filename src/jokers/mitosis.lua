@@ -18,8 +18,8 @@ SMODS.Joker {
                 no_add = true --don't add a glitched extra duplicate to our jokers list
             })
 
-            card.children.center:set_sprite_pos({ x = 0, y = 0 })
-            new_card.children.center:set_sprite_pos({ x = 1, y = 0 })
+            card.children.center:set_sprite_pos({ x = 0, y = 0 }) --left rip
+            new_card.children.center:set_sprite_pos({ x = 1, y = 0 }) --right rip
 
             new_card.is_copy = true
             new_card:add_to_deck()
@@ -36,7 +36,7 @@ SMODS.Joker {
             end
         elseif context.drawing_cards or context.end_of_round then
             --todo would be nice to have dissolve shader here
-            card.children.center:set_sprite_pos({ x = 0, y = 1 })
+            card.children.center:set_sprite_pos({ x = 0, y = 1 }) --return to full sprite
             card.is_copy = false
         end
 
